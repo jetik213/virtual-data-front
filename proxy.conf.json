@@ -1,0 +1,17 @@
+{
+    "/api/v1/alumno" : {
+        "target" : "http://localhost:8083",
+        "secure" : false,
+        "loglevel" : "debug"
+    },
+    "/api/v1/psicologo" : {
+        "target" : "http://localhost:8083",
+        "secure" : false,
+        "loglevel" : "debug"
+    },
+    "/api/v1/asesoria" : {
+        "target" : "http://localhost:8083",
+        "secure" : false,
+        "loglevel" : "debug"
+    }
+}

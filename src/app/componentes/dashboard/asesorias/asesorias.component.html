@@ -1,0 +1,61 @@
+<mat-spinner *ngIf="!loading" class="dspinner" diameter="50"></mat-spinner>
+<div class="container" *ngIf="loading">
+    <mat-toolbar>
+        <span>Asesorias</span>
+        <div class="example-spacer"></div>
+        <button mat-raised-button color="primary" routerLink="/dashboard/grabar-asesoria">AGREGAR</button>
+    </mat-toolbar>
+    <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ejm. nombre" #input autocomplete="off">
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="alumno">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Alumno </th>
+              <td mat-cell *matCellDef="let element"> {{element.alumno.nombre}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="psicologo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Psicólogo </th>
+              <td mat-cell *matCellDef="let element"> {{element.psicologo.nombre}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="fecha">
+              <th mat-header-cell *matHeaderCellDef> Fecha </th>
+              <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="horario">
+                <th mat-header-cell *matHeaderCellDef> Horario </th>
+                <td mat-cell *matCellDef="let element"> {{element.horario.nombre}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" style="text-align: right;">
+
+                    <a class="pointer" style="color: #1f516f;" matTooltip="Editar Asesoria" [routerLink]="['/dashboard/grabar-asesoria', element.id]">
+                        <mat-icon>edit</mat-icon>
+
+                    </a>
+                    <a class="pointer" (click)="deleteAsesoria(element.id)" style="color: #e15639;" matTooltip="Eliminar Asesoria">
+                        <mat-icon>delete</mat-icon>
+
+                    </a>
+                </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona la página"></mat-paginator>   
+    </div>
+
+</div>

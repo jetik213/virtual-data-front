@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <span>VIRTUAL DATA</span>
+    <span class="example-spacer"></span>
+    <button mat-button *ngFor="let item of menu" [routerLink]="item.redirect" >{{ item.nombre }}</button>
+    <span class="example-spacer"></span>
+    <button type="button" mat-icon-button class="example-icon favorite-icon" (click)="logOut()">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>

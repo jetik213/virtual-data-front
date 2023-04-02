@@ -1,0 +1,60 @@
+<div class="container">
+    <mat-toolbar>
+        <span>{{ (asesoria && asesoria.id) ? 'Editar Asesoria' : 'Crear Asesoria' }}</span>
+    </mat-toolbar>
+    <mat-card style="margin-top: 10px;">
+        <form [formGroup]="form" (ngSubmit)="saveAsesoria()">
+            <mat-grid-list cols="4" rowHeight="70px">
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Alumno</mat-label>
+                        <mat-select formControlName="alumno" [(value)]="alumnoSeleccionado">
+                          <mat-option *ngFor="let item of alumno" [value]="item.id">
+                            {{item.nombre}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="8">
+                    <img src="./assets/img/usuario.png" width="40%">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Psicólogo</mat-label>
+                        <mat-select formControlName="psicologo" [(value)]="psicologoSeleccionado">
+                          <mat-option *ngFor="let item of psicologo" [value]="item.id">
+                            {{item.nombre}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="fecha" style="display: inline;">
+                        <mat-hint>DD/MM/AAAA</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>                        
+                        <!--- <input matInput formControlName="fecha"> -->
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Horario</mat-label>
+                        <mat-select formControlName="horario" [(value)]="horarioSeleccionado">
+                          <mat-option *ngFor="let item of horario" [value]="item.id">
+                            {{item.nombre}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <button mat-raised-button style="margin-right: 20px;" routerLink="/dashboard/asesorias">Volver</button>
+                    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+        </form>
+    </mat-card>
+</div>

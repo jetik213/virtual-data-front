@@ -1,0 +1,80 @@
+<mat-spinner *ngIf="!loading" class="dspinner" diameter="50"></mat-spinner>
+<div class="container" *ngIf="loading">
+    <mat-toolbar>
+        <span>Alumnos</span>
+        <div class="example-spacer"></div>
+        <button mat-raised-button color="primary" routerLink="/dashboard/grabar-alumno">AGREGAR</button>
+    </mat-toolbar>
+    <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ejm. nombre" #input autocomplete="off">
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+              <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="direccion">
+              <th mat-header-cell *matHeaderCellDef> Direccion </th>
+              <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef> Telefono </th>
+                <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="carrera">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Carrera </th>
+                <td mat-cell *matCellDef="let element"> {{element.carrera.nombre}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="ciclo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciclo </th>
+              <td mat-cell *matCellDef="let element"> {{element.ciclo.ciclo}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" style="text-align: right;">
+                    <!--<a class="pointer" style="color: #1878b0;" matTooltip="Ver Alumno">
+                        <mat-icon>search</mat-icon>
+                    </a>-->
+                    <a class="pointer" style="color: #1f516f;" matTooltip="Editar Alumno" [routerLink]="['/dashboard/grabar-alumno', element.id]">
+                        <mat-icon>edit</mat-icon>
+                        <!-- <button mat-raised-button color="accent">Editar</button> -->
+                    </a>
+                    <a class="pointer" (click)="deleteAlumno(element.id)" style="color: #e15639;" matTooltip="Eliminar Alumno">
+                        <mat-icon>delete</mat-icon>
+                        <!-- <button mat-raised-button color="warn">Eliminar</button> -->
+                    </a>
+                </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona la página"></mat-paginator>   
+    </div>
+</div>

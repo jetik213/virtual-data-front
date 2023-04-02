@@ -1,0 +1,5 @@
+<mat-spinner *ngIf="!loading" class="dspinner" diameter="50"></mat-spinner>
+<div *ngIf="loading">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+</div>
