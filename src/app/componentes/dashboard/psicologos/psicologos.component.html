@@ -1,5 +1,5 @@
-<mat-spinner *ngIf="!loading" class="dspinner" diameter="50"></mat-spinner>
-<div class="container" *ngIf="loading">
+<mat-spinner [hidden]="loading" class="dspinner" diameter="50"></mat-spinner>
+<div class="container" [hidden]="!loading">
     <mat-toolbar>
         <span>Psicólogos</span>
         <div class="example-spacer"></div>
@@ -65,6 +65,6 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona la página"></mat-paginator>   
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>   
     </div>
 </div>
